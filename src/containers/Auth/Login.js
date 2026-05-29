@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
+import userService from '../../services/userService';
 import { every } from 'lodash';
 
 class Login extends Component {
@@ -12,7 +13,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            isShowPassword: false
+            isShowPassword: false,
+            errMessage: ''
         }
     }
     handleOnChangeUsername = (event) => {
@@ -27,9 +29,38 @@ class Login extends Component {
         })
     }
 
-    handleLogin = () => {
-        console.log('username: ', this.state.username, 'password : ', this.state.password)
-        console.log('all state ', this.state)
+
+    handleLogin = async () => {
+        this.setState({
+            errMessage: ''
+        })
+
+        console.log('STATE LOGIN:', this.state);
+
+        try {
+            let data = await userService.handleLoginApi(
+                this.state.username,
+                this.state.password
+            );
+            if (data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.message
+                })
+            }
+            if (data && data.errCode === 0) {
+                this.props.userLoginSuccess(data.user);
+                console.log('login succeeds');
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.data) {
+                    this.setState({
+                        errMessage: error.response.data.message
+                    })
+                }
+            }
+            console.log('hoidanit', error.response);
+        }
     }
 
     handleShowHidePassword = () => {
@@ -62,10 +93,12 @@ class Login extends Component {
                                 />
                                 <span
                                     onClick={() => { this.handleShowHidePassword() }}
-                                ><i class={this.state.isShowPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i></span>
+                                ><i className={this.state.isShowPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i></span>
 
                             </div>
-
+                        </div>
+                        <div className='col-12' style={{ color: 'red' }}>
+                            {this.state.errMessage}
                         </div>
                         <div className="col-12">
                             <button className="btn-login" onClick={() => { this.handleLogin() }}>Login</button>
@@ -96,8 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        //userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 

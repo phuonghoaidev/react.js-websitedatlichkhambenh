@@ -10,7 +10,8 @@ class UserManage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            arrUsers: []
+            arrUsers: [],
+            isOpenModalUser: false,
         }
     }
 
@@ -28,7 +29,15 @@ class UserManage extends Component {
     }
 
     handleAddNewUser = () => {
-        alert('click me')
+        this.setState({
+            isOpenModalUser: true,
+        })
+    }
+
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+        })
     }
 
 
@@ -38,7 +47,12 @@ class UserManage extends Component {
         console.log(arrUsers)
         return (
             <div className="users-container">
-                <ModalUser />
+                <ModalUser
+                    isOpen={this.state.isOpenModalUser}
+                    toggleFromParent={this.toggleUserModal}
+                    test={'abc'}
+
+                />
                 <div className="title text-center">Manage users with Eric</div>
                 <div className="mx-1">
                     <button

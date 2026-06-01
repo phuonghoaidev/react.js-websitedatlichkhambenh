@@ -16,18 +16,17 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
-        try {
-            let response = await userService.getAllUsers('ALL');
-            if (response && response.errCode === 0) {
-                this.setState({
-                    arrUsers: response.users
-                })
-            }
-        } catch (e) {
-            console.log(e);
-        }
+        await this.getAllUsersFromReact();
     }
 
+    getAllUsersFromReact = async () => {
+        let response = await userService.getAllUsers('ALL');
+        if (response && response.errCode === 0) {
+            this.setState({
+                arrUsers: response.users
+            })
+        }
+    }
     handleAddNewUser = () => {
         this.setState({
             isOpenModalUser: true,
@@ -40,6 +39,22 @@ class UserManage extends Component {
         })
     }
 
+    createNewUser = async (data) => {
+        try {
+            let response = await userService.createNewUserService(data);
+            if (response && response.errCode !== 0) {
+                alert(response.errMessage)
+            } else {
+                await this.getAllUsersFromReact();
+                this.setState({
+                    isOpenModalUser: false
+                })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 
     render() {
         console.log('check render ', this.state)
@@ -50,7 +65,7 @@ class UserManage extends Component {
                 <ModalUser
                     isOpen={this.state.isOpenModalUser}
                     toggleFromParent={this.toggleUserModal}
-                    test={'abc'}
+                    createNewUser={this.createNewUser}
 
                 />
                 <div className="title text-center">Manage users with Eric</div>

@@ -17,9 +17,9 @@ class ModalUser extends Component {
             address: ''
         }
 
-        this.listenToEmiiter();
+        this.listenToEmitter();
     }
-    listenToEmiiter() {
+    listenToEmitter() {
         emitter.on('EVENT_CLEAR-MODAL_DATA', () => {
             //reset state
             this.setState({
@@ -33,7 +33,6 @@ class ModalUser extends Component {
     }
 
     componentDidMount() {
-        console.log('mouting modal')
     }
 
     toggle = () => {
@@ -56,7 +55,7 @@ class ModalUser extends Component {
         });
     }
 
-    checkValideInput = () => {
+    checkValidateInput = () => {
         let isValid = true;
         let arrInput = ['email', 'password', 'firstName', 'lastName', 'address'];
         for (let i = 0; i < arrInput.length; i++) {
@@ -70,7 +69,7 @@ class ModalUser extends Component {
         return isValid;
     }
     handleAddNewUser = () => {
-        let isValid = this.checkValideInput();
+        let isValid = this.checkValidateInput();
         if (isValid === true) {
             //call api create modal
             this.props.createNewUser(this.state, 'abc');

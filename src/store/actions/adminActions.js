@@ -115,3 +115,31 @@ export const saveUserSuccess = () => ({
 export const saveUserFailed = () => ({
     type: actionTypes.SAVE_USER_FAILDED
 })
+
+
+export const fetchAllUsersStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.getAllUsers('ALL');
+
+            if (res && res.errCode === 0) {
+                console.log('check get all users: ', res);
+                dispatch(fetchAllUsersSuccess(res.users))
+            } else {
+                dispatch(fetchAllUsersFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllUsersFailed());
+            console.log('fetchAllUsersStart error', e)
+        }
+    }
+}
+
+export const fetchAllUsersSuccess = (data) => ({
+    type: 'FETCH_ALL_USERS_SUCCESS',
+    users: data
+})
+
+export const fetchAllUsersFailed = () => ({
+    type: 'FETCH_ALL_USERS_FAILDED',
+})

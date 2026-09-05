@@ -96,6 +96,7 @@ class UserRedux extends Component {
             roleId: this.state.role,
             positionId: this.state.position,
         })
+      
     }
 
     checkValidateInput = () => {
@@ -258,7 +259,7 @@ class UserRedux extends Component {
                                 ><FormattedMessage id="manage-user.save" /></button>
                             </div>
 
-                            <div className="col-12">
+                            <div className="col-12 mb-5">
                                 <TableManageUser/>
                             </div>
 
@@ -295,7 +296,8 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(action.fetchGenderStart()),
         getPositionStart: () => dispatch(action.fetchPositionStart()),
         getRoleStart: () => dispatch(action.fetchRoleStart()),
-        createNewUser: (data) => dispatch(action.createNewUser(data))
+        createNewUser: (data) => dispatch(action.createNewUser(data)),
+         fetchAllUserRedux: () => dispatch(action.fetchAllUsersStart())
         //  processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
     };

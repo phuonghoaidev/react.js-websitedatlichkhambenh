@@ -21,13 +21,13 @@ class TableManageUser extends Component {
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.listUsers !== this.props.listUsers){
             this.setState({
-                usersRedux: this.props.listUsers
+                userRedux: this.props.listUsers
             })
         }
     }
     render() {
         console.log('hoidanit check all users: ', this.props.listUsers)
-        console.log('hoidanit check state: ', this.state.usersRedux)
+        console.log('hoidanit check state: ', this.state.userRedux)
         let arrUsers = this.state.userRedux;
         return (
                     <table id="TableManageUser">
@@ -39,17 +39,24 @@ class TableManageUser extends Component {
                                 <th>Address</th>
                                 <th>Actions</th>
                             </tr>
-                            {arrUsers && arrUsers.length > 0}
-                                    <tr >
-                                        <td>{'item.email'}</td>
-                                        <td>{'item.firstName'}</td>
-                                        <td>{'item.lastName'}</td>
-                                        <td>{'item.address'}</td>
+                            {arrUsers && arrUsers.length > 0 &&
+                            
+                            arrUsers.map((item, index) => {
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.email}</td>
+                                        <td>{item.firstName}</td>
+                                        <td>{item.lastName}</td>
+                                        <td>{item.address}</td>
                                         <td>
                                              <button className="btn-edit" ><i className="fas fa-pencil-alt"></i></button>
                                             <button className="btn-delete" ><i className="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
+                                )
+                            })
+                            
+                            }
                         </tbody>
                     </table>
               

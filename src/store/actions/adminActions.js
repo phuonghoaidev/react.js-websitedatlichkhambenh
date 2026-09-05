@@ -97,12 +97,13 @@ export const createNewUser = (data) => {
             let res = await userService.createNewUserService(data);
             if (res && res.errCode === 0) {
                 dispatch(saveUserSuccess())
+                fetchAllUsersStart();
             } else {
                 dispatch(saveUserFailed());
             }
         } catch (e) {
             dispatch(saveUserFailed());
-            console.log('fetchRoleStart error', e)
+            console.log('saveUserFailed error', e)
         }
     }
 }

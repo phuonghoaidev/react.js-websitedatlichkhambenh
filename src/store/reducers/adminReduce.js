@@ -5,7 +5,8 @@ const initialState = {
     genders: [],
     roles: [],
     positions: [],
-    users: []
+    users: [],
+    isCreatedUser: false
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -49,17 +50,32 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
 
+        case actionTypes.CREATE_USER_SUCCESS:
+            state.isCreatedUser = true;
+            return {
+                ...state
+            }
+
+        case actionTypes.CREATE_USER_FAILDED:
+            state.isCreatedUser = false;
+            return {
+                ...state
+            }
+
         case actionTypes.FETCH_ALL_USERS_SUCCESS:
             state.users = action.users;
+            state.isCreatedUser = false;
             return {
                     ...state
                 }
 
         case actionTypes.FETCH_ALL_USERS_FAILDED:
             state.users = [];
+            state.isCreatedUser = false;
             return {
                     ...state
             }   
+               
 
         default:
             return state;

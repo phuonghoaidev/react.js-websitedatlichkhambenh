@@ -18,6 +18,7 @@ class UserRedux extends Component {
             previewImgURL: '',
             isOpen: false,
 
+
             email: '',
             password: '',
             firstName: '',
@@ -56,6 +57,22 @@ class UserRedux extends Component {
             this.setState({
                 positionArr: arrPosition,
                 position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : ''
+            })
+        }
+
+        if(prevProps.isCreatedUser !== this.props.isCreatedUser && this.props.isCreatedUser === true) {
+            this.setState({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: this.state.genderArr && this.state.genderArr.length > 0 ? this.state.genderArr[0].key : '',
+            position: this.state.positionArr && this.state.positionArr.length > 0 ? this.state.positionArr[0].key : '',
+            role: this.state.roleArr && this.state.roleArr.length > 0 ? this.state.roleArr[0].key : '',
+            avatar: '',
+            previewImgURL: ''
             })
         }
     }
@@ -133,7 +150,7 @@ class UserRedux extends Component {
 
 
         let { email, password, firstName, lastName,
-            phonenumber, address, gender, position, role, avatar
+            phoneNumber, address, gender, position, role, avatar
         } = this.state;
 
 
@@ -178,7 +195,7 @@ class UserRedux extends Component {
                             <div className="col-3">
                                 <label><FormattedMessage id="manage-user.phone-number" /></label>
                                 <input className="form-control" type="text"
-                                    value={phonenumber}
+                                    value={phoneNumber}
                                     onChange={(event) => { this.onChangeInput(event, 'phoneNumber') }}
                                 />
                             </div>
@@ -192,6 +209,7 @@ class UserRedux extends Component {
                             <div className="col-3">
                                 <label><FormattedMessage id="manage-user.gender" /></label>
                                 <select className="form-control"
+                                    value={gender}
                                     onChange={(event) => { this.onChangeInput(event, 'gender') }}
                                 >
                                     {genders && genders.length > 0 &&
@@ -209,6 +227,7 @@ class UserRedux extends Component {
                             <div className="col-3">
                                 <label><FormattedMessage id="manage-user.position" /></label>
                                 <select className="form-control"
+                                    value={position}
                                     onChange={(event) => { this.onChangeInput(event, 'position') }}
                                 >
                                     {positions && positions.length > 0
@@ -224,6 +243,7 @@ class UserRedux extends Component {
                             <div className="col-3">
                                 <label><FormattedMessage id="manage-user.role" /></label>
                                 <select className="form-control"
+                                    value={role}
                                     onChange={(event) => { this.onChangeInput(event, 'role') }}
                                 >
                                     {roles && roles.length > 0
@@ -288,6 +308,8 @@ const mapStateToProps = state => {
         roleRedux: state.admin.roles,
         positionRedux: state.admin.positions,
         isLoadingGender: state.admin.isLoadingGender,
+        listUsers: state.admin.users,
+        isCreatedUser: state.admin.isCreatedUser
     };
 };
 

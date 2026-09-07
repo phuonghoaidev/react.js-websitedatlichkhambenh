@@ -6,75 +6,102 @@ const initialState = {
     roles: [],
     positions: [],
     users: [],
-    isCreatedUser: false
+    isCreatedUser: false,
+    isEditedUser: false
 }
 
 const adminReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START:
-            let copyState = { ...state };
-            copyState.isLoadingGender = true;
             return {
-                ...copyState
+                ...state,
+                isLoadingGender: true
             }
         case actionTypes.FETCH_GENDER_SUCCESS:
-            state.genders = action.data;
-            state.isLoadingGender = false;
             return {
-                ...state
+                ...state,
+                genders: action.data,
+                isLoadingGender: false
             }
         case actionTypes.FETCH_GENDER_FAIDED:
-            state.isLoadingGender = false;
-            state.genders = [];
             return {
-                ...state
+                ...state,
+                isLoadingGender: false,
+                genders: []
             }
         case actionTypes.FETCH_POSITION_SUCCESS:
-            state.positions = action.data;
             return {
-                ...state
+                ...state,
+                positions: action.data
             }
         case actionTypes.FETCH_POSITION_FAILDED:
-            state.positions = [];
             return {
-                ...state
+                ...state,
+                positions: []
             }
         case actionTypes.FETCH_ROLE_SUCCESS:
-            state.roles = action.data;
             return {
-                ...state
+                ...state,
+                roles: action.data
             }
         case actionTypes.FETCH_ROLE_FAILDED:
-            state.roles = [];
             return {
-                ...state
+                ...state,
+                roles: []
             }
 
         case actionTypes.CREATE_USER_SUCCESS:
-            state.isCreatedUser = true;
+            return {
+                ...state,
+                isCreatedUser: true
+            }
+
+        case actionTypes.CREATE_USER_FAILDED:
+            return {
+                ...state,
+                isCreatedUser: false
+            }
+
+        case actionTypes.EDIT_USER_SUCCESS:
+            return {
+                ...state,
+                isEditedUser: true,
+                users: state.users.map((user) =>
+                    user.id === action.user.id ? { ...user, ...action.user } : user
+                )
+            }
+
+        case actionTypes.DELETE_USER_SUCCESS:
             return {
                 ...state
             }
 
-        case actionTypes.CREATE_USER_FAILDED:
-            state.isCreatedUser = false;
+        case actionTypes.EDIT_USER_FAILDED:
+            return {
+                ...state,
+                isEditedUser: false
+            }
+
+        case actionTypes.DELETE_USER_FAILDED:
             return {
                 ...state
             }
 
         case actionTypes.FETCH_ALL_USERS_SUCCESS:
-            state.users = action.users;
-            state.isCreatedUser = false;
             return {
-                    ...state
-                }
+                ...state,
+                users: action.users,
+                isCreatedUser: false,
+                isEditedUser: false
+            }
 
         case actionTypes.FETCH_ALL_USERS_FAILDED:
-            state.users = [];
-            state.isCreatedUser = false;
             return {
-                    ...state
-            }   
+                ...state,
+                users: [],
+                isCreatedUser: false,
+                isEditedUser: false
+            }
                
 
         default:

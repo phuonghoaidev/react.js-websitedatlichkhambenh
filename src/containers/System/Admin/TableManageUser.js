@@ -1,37 +1,20 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import * as action from "../../../store/actions"
 
 class TableManageUser extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-           userRedux: []
-        }
-    }
-
     componentDidMount() {
         this.props.fetchAllUserRedux();
-    }
-
-
-    componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.listUsers !== this.props.listUsers){
-            this.setState({
-                userRedux: this.props.listUsers
-            })
-        }
     }
     handleDeletUser = (user) => {
         this.props.deleteAUserRedux(user.id);
     }
+    handleEditUser = (user) =>{
+        this.props.handleEditUserFromParentKey(user)
+    }
     render() {
-        console.log('hoidanit check all users: ', this.props.listUsers)
-        console.log('hoidanit check state: ', this.state.userRedux)
-        let arrUsers = this.state.userRedux;
+        let arrUsers = this.props.listUsers;
         return (
                     <table id="TableManageUser">
                       <tbody>
@@ -46,13 +29,15 @@ class TableManageUser extends Component {
                             
                             arrUsers.map((item, index) => {
                                 return(
-                                    <tr key={index}>
+                                    <tr key={item.id}>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
                                         <td>
-                                             <button className="btn-edit" ><i className="fas fa-pencil-alt"></i></button>
+                                             <button 
+                                             onClick={() => this.handleEditUser(item)}
+                                             className="btn-edit" ><i className="fas fa-pencil-alt"></i></button>
                                             <button
                                             onClick={() => this.handleDeletUser(item)} 
                                             className="btn-delete" ><i className="fas fa-trash"></i></button>

@@ -46,21 +46,21 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux;
             this.setState({
                 genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
             let arrRoles = this.props.roleRedux;
             this.setState({
                 roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let arrPosition = this.props.positionRedux;
             this.setState({
                 positionArr: arrPosition,
-                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : ''
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : ''
             })
         }
 
@@ -76,9 +76,9 @@ class UserRedux extends Component {
             lastName: '',
             phoneNumber: '',
             address: '',
-            gender: this.state.genderArr && this.state.genderArr.length > 0 ? this.state.genderArr[0].key : '',
-            position: this.state.positionArr && this.state.positionArr.length > 0 ? this.state.positionArr[0].key : '',
-            role: this.state.roleArr && this.state.roleArr.length > 0 ? this.state.roleArr[0].key : '',
+            gender: this.state.genderArr && this.state.genderArr.length > 0 ? this.state.genderArr[0].keyMap : '',
+            position: this.state.positionArr && this.state.positionArr.length > 0 ? this.state.positionArr[0].keyMap : '',
+            role: this.state.roleArr && this.state.roleArr.length > 0 ? this.state.roleArr[0].keyMap : '',
             avatar: '',
             previewImgURL: '',
             action: CRUD_ACTIONS.CREATE,
@@ -274,7 +274,7 @@ class UserRedux extends Component {
                                     {genders && genders.length > 0 &&
                                         genders.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             )
@@ -292,7 +292,7 @@ class UserRedux extends Component {
                                     {positions && positions.length > 0
                                         && positions.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             );
@@ -308,7 +308,7 @@ class UserRedux extends Component {
                                     {roles && roles.length > 0
                                         && roles.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             );
@@ -347,7 +347,7 @@ class UserRedux extends Component {
 
                             <div className="col-12 mb-5">
                                 <TableManageUser
-                                
+
                                 handleEditUserFromParentKey={this.handleEditUserFromParent}
                                 action={this.state.action}
                                 />

@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes';
 import userService from "../../services/userService";
 import { toast } from 'react-toastify';
+
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START
 // })
@@ -125,16 +126,15 @@ export const fetchAllUsersStart = () => {
             let res = await userService.getAllUsers('ALL');
 
             if (res && res.errCode === 0) {
-                // Do not mutate the response array; Redux state must receive a new value.
-                dispatch(fetchAllUsersSuccess([...res.users].reverse()))
+                dispatch(fetchAllUsersSuccess(res.users.reverse()))
             } else {
-                toast.error("fetch all users error!");
+                toast.error("Fetch all users error!");
                 dispatch(fetchAllUsersFailed());
             }
         } catch (e) {
-            toast.error("fetch all users error!");
+            toast.error("Fetch all users error!");
             dispatch(fetchAllUsersFailed());
-            console.log('fetchAllUsersFailed error', e)
+            console.log('FetchAllUsersFailed error', e)
         }
     }
 }
@@ -206,3 +206,27 @@ export const editUserSuccess = (data) => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILDED
 })
+
+//   let res1 = await userService.getTopdoctorHomeService(3);
+export const fetchTopDoctor = () => {
+     return async (dispatch, getState) => {
+        try {
+            let res = await userService.getTopDoctorHomeService('');
+
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                    dataDoctors: res.data
+                })
+            }else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_FAILDED,
+                })
+            }
+        }catch (e) {
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_FAILDED
+            })
+        }
+    }
+}

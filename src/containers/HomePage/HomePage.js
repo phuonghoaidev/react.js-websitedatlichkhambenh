@@ -11,18 +11,22 @@ import HomeFooter from './HomeFooter';
 import './HomePage.scss';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { after } from 'lodash';
 
 class HomePage extends Component {
-
+    // handleAfterChange = (index, dontAnimate) => {
+    //     console.log('phuong: ', index)
+    // }
     render() {
         let settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-
+            // slickGoto: this.handleAfterChange
         };
+
         return (
             <div>
                 <HomeHeader />

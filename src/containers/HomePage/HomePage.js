@@ -24,12 +24,11 @@ class HomePage extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-            // slickGoto: this.handleAfterChange
         };
 
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader isShowBanner={true}/>
                 <Specialty
                     settings={settings}
                 />

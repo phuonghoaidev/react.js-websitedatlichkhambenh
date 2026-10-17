@@ -12,18 +12,19 @@
         height: 100%;
         display: flex;
 
-        .left-content {
-            width: 20%;
-            display: flex;
-            align-items: center;
-
-            .header-logo {
-                height: 150%;
-                width: 150%;
-                cursor: pointer;
-                transform: scale(0.5, 0.5);
-                margin-left: -45px;
-            }
+     .left-content {
+        width: 22%;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      .header-logo {
+        width: 220px;
+        height: 58px;
+        object-fit: contain;
+        cursor: pointer;
+        margin-left: 5px;
+        flex-shrink: 0;
+    }
 
             i {
                 font-size: 25px;
@@ -33,7 +34,7 @@
         }
 
         .center-content {
-            width: 55%;
+            width: 53%;
             display: flex;
             justify-content: space-between;
             align-items: center;

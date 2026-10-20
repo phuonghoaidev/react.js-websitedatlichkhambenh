@@ -10,6 +10,8 @@ import moment from 'moment';
 import { range } from 'lodash';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
+import userService from '../../../services/userService';
+
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -94,7 +96,7 @@ class ManageSchedule extends Component {
     }
 
 
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let { rangeTime, selectedDoctor, currentDate } = this.state;
         let result = [];
 
@@ -107,15 +109,20 @@ class ManageSchedule extends Component {
             return;
         }
 
-        let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+
+        // let formatedDate = moment(currentDate).unix();
+
+        let formatedDate = new Date(currentDate).getTime();
+
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(item => item.isSelected === true);
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.map((scheduler, index) => {
                     let object = {};
                     object.doctorId = selectedDoctor.value;
-                    object.data = formatedDate;
-                    object.time = scheduler.keymap;
+                    object.date = formatedDate;
+                    object.timeType = scheduler.keyMap;
                     result.push(object);
                 })
             } else {
@@ -123,6 +130,15 @@ class ManageSchedule extends Component {
                 return;
             }
         }
+
+        let res = await userService.saveBulkScheduleDoctor({
+            arrSchedule: result,
+            doctorId: selectedDoctor.value,
+            formatedDate: formatedDate
+        })
+        console.log('phuong check res: saveBulkScheduleDoctor ', res)
+        console.log('phuong check result: ', result)
+
 
     }
     render() {

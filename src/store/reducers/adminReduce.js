@@ -9,6 +9,7 @@ const initialState = {
     topDoctors: [],
     allDoctors: [],
     allScheduleTime: [],
+    allRequiredDoctorInfor: [],
     isCreatedUser: false,
     isEditedUser: false
 }
@@ -139,8 +140,7 @@ const adminReducer = (state = initialState, action) => {
                 isEditedUser: false
             }
 
-        case actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS
-            :
+        case actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS:
             return {
                 ...state,
                 allScheduleTime: action.dataTime,
@@ -156,6 +156,23 @@ const adminReducer = (state = initialState, action) => {
                 isEditedUser: false
             }
 
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS:
+            return {
+                ...state,
+
+                allRequiredDoctorInfor: action.data,
+                isCreatedUser: false,
+                isEditedUser: false
+            }
+
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIDED:
+            return {
+                ...state,
+
+                allRequiredDoctorInfor: [],
+                isCreatedUser: false,
+                isEditedUser: false
+            }
         default:
             return state;
     }

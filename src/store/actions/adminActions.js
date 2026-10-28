@@ -259,13 +259,13 @@ export const saveDetailDoctor = (data) => {
     return async (dispatch, getState) => {
         try {
             let res = await userService.saveDetailDoctorService(data);
-
             if (res && res.errCode === 0) {
                 toast.success("Save Infor Detail Doctor succeed!");
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
                 })
             } else {
+                toast.error("Save Infor Detail Doctor error!");
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILDED,
                 })

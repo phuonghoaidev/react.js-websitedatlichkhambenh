@@ -265,13 +265,16 @@ export const saveDetailDoctor = (data) => {
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
                 })
             } else {
-                toast.error("Save Infor Detail Doctor error!");
+                toast.error((res && (res.errMessage || res.message)) || "Save Infor Detail Doctor error!");
+                console.error('saveDetailDoctor failed:', res);
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILDED,
                 })
             }
         } catch (e) {
-            toast.error("Save Infor Detail Doctor error!");
+            toast.error((e.response && e.response.data && e.response.data.errMessage)
+                || "Save Infor Detail Doctor error!");
+            console.error('saveDetailDoctor error:', e);
             dispatch({
                 type: actionTypes.SAVE_DETAIL_DOCTOR_FAILDED
             })

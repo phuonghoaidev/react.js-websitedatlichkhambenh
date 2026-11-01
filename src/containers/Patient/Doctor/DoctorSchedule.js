@@ -88,7 +88,6 @@ class DoctorSchedule extends Component {
                     allAvalableTime: res.data ? res.data : []
                 })
             }
-            console.log('check res schedule from react: ', res)
         }
     }
     render() {

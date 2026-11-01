@@ -70,6 +70,13 @@
             "no-schedule": "The doctor is not on duty at this time; please select a different time! ^.^",
             "choose": "choose ",
             "book-free": " and book (free)"
+        },
+        "extra-infor-doctor": {
+            "text-address": "Clinic address",
+            "price": "Consultation fee: ",
+            "detail": "See details",
+            "payment": "Patients can pay the costs via the following methods::",
+            "hide-price": "Hide price list"
         }
     },
     "admin": {

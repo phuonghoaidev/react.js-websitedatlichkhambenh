@@ -12,7 +12,7 @@ import System from '../routes/System';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import HomePage from './HomePage/HomePage.js';
 import CustomScrollbars from "../components/CustomScrollbars.js";
-import DetailDoctor from './Patient/Doctor/detailDoctor.js';
+import DetailDoctor from './Patient/Doctor/DetailDoctor.js'
 import Doctor from '../routes/Doctor.js';
 
 class App extends Component {

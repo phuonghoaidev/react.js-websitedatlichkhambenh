@@ -264,12 +264,14 @@ export const saveDetailDoctor = (data) => {
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
                 })
+                return res;
             } else {
                 toast.error((res && (res.errMessage || res.message)) || "Save Infor Detail Doctor error!");
                 console.error('saveDetailDoctor failed:', res);
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILDED,
                 })
+                return res;
             }
         } catch (e) {
             toast.error((e.response && e.response.data && e.response.data.errMessage)
@@ -278,6 +280,7 @@ export const saveDetailDoctor = (data) => {
             dispatch({
                 type: actionTypes.SAVE_DETAIL_DOCTOR_FAILDED
             })
+            return null;
         }
     }
 }
@@ -316,15 +319,19 @@ export const getRequiredDoctorInfor = () => {
             let resPrice = await userService.getAllCodeService("PRICE");
             let resPayment = await userService.getAllCodeService("PAYMENT");
             let resProvince = await userService.getAllCodeService("PROVINCE");
+            let resSpecialty = await userService.getAllSpecialty();
 
             if (resPrice && resPrice.errCode === 0
                 && resPrice && resPrice.errCode === 0
                 && resPayment && resPayment.errCode === 0
-                && resProvince && resProvince.errCode === 0) {
+                && resProvince && resProvince.errCode === 0
+                && resSpecialty && resSpecialty.errCode === 0
+            ) {
                 let data = {
                     resPrice: resPrice.data,
                     resPayment: resPayment.data,
-                    resProvince: resProvince.data
+                    resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data
                 }
                 dispatch(fetchRequiredDoctorInforSuccess(data))
             } else {

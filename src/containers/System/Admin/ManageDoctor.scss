@@ -1,57 +1,66 @@
+
 .manage-doctor-container {
-    padding: 5px;
+    padding: 15px 20px;
 
     .manage-doctor-title {
         text-align: center;
-        margin: 15px 0;
-        font-size: 20px;
+        margin: 20px 0 30px;
+        font-size: 22px;
         text-transform: uppercase;
         font-weight: 600;
+        color: #333;
     }
 
     .save-content-doctor {
         margin-top: 20px;
         margin-bottom: 30px;
-        border-radius: 3px;
+        border-radius: 5px;
         outline: none;
         border: none;
-        padding: 5px;
+        padding: 8px 20px;
         background: orange;
+        color: white;
+        font-weight: 600;
         cursor: pointer;
+        transition: 0.2s;
 
         &:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
     }
 
-     .create-content-doctor {
+    .create-content-doctor {
         margin-top: 20px;
         margin-bottom: 30px;
-        border-radius: 3px;
+        border-radius: 5px;
         outline: none;
         border: none;
-        padding: 5px;
-        background: rgb(11, 93, 216);
-        cursor: pointer;
+        padding: 8px 20px;
+        background: #0b5dd8;
         color: white;
-        
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+
         &:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
     }
 
     .more-infor {
         display: flex;
-        gap: 15px;
-        padding-bottom: 15px;
-
+        gap: 20px;
+        padding-bottom: 20px;
+        align-items: flex-start;
 
         .content-left {
-            width: 40%;
+            width: 35%;
         }
 
         .content-right {
-            width: 60%;
+            width: 65%;
         }
     }
 }

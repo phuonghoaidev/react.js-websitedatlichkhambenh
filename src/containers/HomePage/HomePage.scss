@@ -1,186 +1,257 @@
-//reset slick slider css
-
-.slick-prev {
-    left: -10px !important;
-    z-index: 1000 !important;
-    height: 48px !important;
-    width: 44px !important;
-    background: #fff !important;
-    border: 2px solid #d7d7d7 !important;
-
-    &:hover {
-        background: #eceaea !important;
-    }
-}
-
-.slick-prev::before,
-.slick-next::before {
-    font-family: FontAwesome !important;
-    color: red !important;
-    // content: "\f060" !important;
-}
-
-.slick-next {
-    right: -10px !important;
-    z-index: 1000 !important;
-    height: 48px !important;
-    width: 44px !important;
-    background: #fff !important;
-    border: 2px solid #d7d7d7 !important;
-
-    &:hover {
-        background: #eceaea !important;
-    }
-}
-
-.slick-disabled {
-    display: none !important;
-}
-
+$home-blue: #1677b8;
+$home-dark: #173b56;
+$home-muted: #647482;
+$home-bg: #f6f9fc;
 
 .section-share {
-    &.section-specialty {
-        background: #f5f5f5;
-    }
+    min-height: 330px;
+    padding: 34px 0 42px;
+    background: #fff;
 
+    &.section-specialty,
     &.section-outstanding-doctor {
-        background: #f5f5f5;
+        background: $home-bg;
     }
 
     &.section-about {
-        height: 500px !important;
-        border-top: 1px solid #f5f5f5;
-        border-bottom: 1px solid #f5f5f5;
+        min-height: 0;
+        padding: 64px 0;
+        border-top: 1px solid #eaf0f4;
+        border-bottom: 1px solid #eaf0f4;
+    }
+
+    .section-container {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+
+        .title-section {
+            color: $home-dark;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .btn-section {
+            padding: 10px 18px;
+            border: 1px solid #dce8ef;
+            border-radius: 7px;
+            background: #eaf5fb;
+            color: $home-blue;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: .2s ease;
+
+            &:hover {
+                border-color: $home-blue;
+                background: $home-blue;
+                color: #fff;
+            }
+        }
     }
 
     .section-body {
+        padding: 0 12px;
+
+        .slick-list { margin: 0 -10px; }
+        .slick-slide > div { padding: 0 10px; }
 
         .section-customize {
+            min-height: 210px;
+            padding: 10px;
+            color: $home-dark;
+            cursor: pointer;
+            text-align: center;
+
             .bg-image {
-                width: 278px;
-                height: 150px;
-                background-position: center center;
+                width: 100%;
+                height: 155px;
+                background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
-                background-color: #eee;
-
-                &.section-specialty {
-                    background-image: url('../../assets/specialty/co-xuong-khop.jpg');
-                }
+                border-radius: 12px;
+                background-color: #edf2f5;
+                box-shadow: 0 4px 14px rgba(30, 70, 90, .08);
+                transition: transform .25s ease, box-shadow .25s ease;
 
                 &.section-medical-facility {
                     background-image: url('../../assets/medical-facility/benh-vien-thu-cuc.jpg');
-                }
-
-                &.section-outstanding-doctor {
-                    // background-image: url('../../assets/outstanding-doctor/ts-bs-pham-thi-tuyet-nga.jpg');
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
                 }
 
                 &.section-handbook {
                     background-image: url('../../assets/handbook/handbook.jpg');
                 }
             }
-        }
-    }
-}
 
-.section-share {
-    height: 330px;
+            &:hover .bg-image {
+                transform: translateY(-4px);
+                box-shadow: 0 9px 20px rgba(30, 70, 90, .16);
+            }
 
-    .section-container {
-        margin: 0 100px;
-        display: flex;
-        flex-direction: column;
-
-        .section-header {
-            height: 60px;
-            margin-bottom: 30px;
-            padding-top: 30px;
-
-            .title-section {
-                font-size: 22px;
+            .specialty-name,
+            > div:not(.bg-image) {
+                margin-top: 13px;
+                color: $home-dark;
+                font-size: 15px;
                 font-weight: 600;
-            }
-
-            .btn-section {
-                float: right;
-                padding: 10px 15px;
-                border: none;
-                outline: none;
-                display: block;
-                background: #ebebeb;
-                color: black;
-                cursor: pointer;
-                text-transform: uppercase;
-
-                &:hover {
-                    color: #fff;
-                    background: #f7d800;
-                }
+                line-height: 1.4;
             }
         }
     }
 }
-
-
-
 
 .section-outstanding-doctor {
-    .outer-bg {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
     .section-customize {
-        padding: 5px;
-        cursor: pointer;
+        min-height: 245px;
 
         .customize-border {
-            border: 1px solid orange;
-            padding: 20px;
+            height: 100%;
+            padding: 20px 14px;
+            border: 1px solid #e4edf2;
+            border-radius: 12px;
+            background: #fff;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        &:hover .customize-border {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(30, 70, 90, .12);
+        }
+
+        .outer-bg {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .bg-image.section-outstanding-doctor {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #e7f4fa;
+        }
+
+        .position {
+            color: $home-dark;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+    }
+}
+
+.section-about {
+    .section-about-header {
+        margin-bottom: 28px;
+        color: $home-dark;
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .section-about-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+        gap: 36px;
+        align-items: center;
+
+        .content-left {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(30, 70, 90, .12);
+
+            iframe {
+                display: block;
+                width: 100%;
+                min-height: 350px;
+                border: 0;
+            }
+        }
+
+        .content-right p {
+            margin: 0;
+            color: $home-muted;
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: justify;
         }
     }
 }
 
 .home-footer {
+    padding: 22px 20px;
+    background: $home-dark;
+    color: #d8e4eb;
+    font-size: 13px;
     text-align: center;
-    padding-top: 8px;
+
+    p { margin: 0; }
 
     a {
-        text-decoration: unset;
+        margin-left: 5px;
+        color: #7bd1eb;
+        text-decoration: none;
+        &:hover { color: #fff; text-decoration: underline; }
     }
 }
 
-.section-about {
-    padding: 0 100px;
+.slick-prev,
+.slick-next {
+    z-index: 2;
+    width: 38px !important;
+    height: 38px !important;
+    border: 1px solid #d9e6ec !important;
+    border-radius: 50%;
+    background: #fff !important;
+    box-shadow: 0 3px 10px rgba(30, 70, 90, .12);
 
-    .section-about-header {
-        padding: 20px 10px;
-        font-size: 22px;
-        font-weight: 600;
-    }
+    &:hover { background: $home-blue !important; }
+}
 
-    .section-about-content {
-        display: flex;
-        gap: 15px;
-        width: 100%;
+.slick-prev { left: -7px !important; }
+.slick-next { right: -7px !important; }
 
-        .content-left {
-            width: 60%;
+.slick-prev::before,
+.slick-next::before { color: $home-blue !important; font-size: 20px; }
+.slick-prev:hover::before,
+.slick-next:hover::before { color: #fff !important; }
+.slick-disabled { opacity: .35; }
+
+@media (max-width: 768px) {
+    .section-share {
+        padding: 28px 0 32px;
+
+        .section-container { width: calc(100% - 24px); }
+
+        .section-header {
+            margin-bottom: 16px;
+            .title-section { font-size: 21px; }
+            .btn-section { padding: 8px 12px; font-size: 10px; }
         }
 
-        .content-right {
-            width: 40%;
-
-            p {
-                text-align: justify;
-                font-style: italic;
-                padding: 15px;
-            }
-        }
+        .section-body { padding: 0 8px; }
     }
+
+    .section-about {
+        padding: 42px 0;
+
+        .section-about-content {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .section-about-header { font-size: 21px; }
+    }
+}
+
+@media (max-width: 480px) {
+    .section-share .section-body .section-customize .bg-image { height: 135px; }
+    .slick-prev { left: -5px !important; }
+    .slick-next { right: -5px !important; }
 }

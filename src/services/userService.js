@@ -79,6 +79,17 @@ const createNewspecialty = (data) => {
     return axios.post('/api/create-new-specialty', data)
 }
 
+const getAllSpecialty = () => {
+    return axios.get(`/api/get-specialty`)
+}
+
+const getAlDetailSpecialtyById = (data) => {
+    return axios.get(`/api/get-detail-specialty-bt-id?id=${data.id}&location=${data.location}`)
+}
+
+const createNewClinic = (data) => {
+    return axios.post('/api/create-new-clinic', data)
+}
 export default {
     handleLoginApi, getAllUsers,
     createNewUserService, deleteUserService,
@@ -88,5 +99,6 @@ export default {
     saveBulkScheduleDoctor, getScheduleDoctorByDate,
     getExtraInforDoctorById, getProfileDoctorById,
     postPatientBookAppointment, postVerifyBookAppointment,
-    createNewspecialty
+    createNewspecialty, getAllSpecialty, getAlDetailSpecialtyById,
+    createNewClinic
 }

@@ -1,77 +1,152 @@
 .doctor-detail-container {
-    height: 500px;
-   
+    min-height: calc(100vh - 80px);
+    padding: 32px 0 56px;
+    background: #f5f7fb;
+    color: #333;
+
+    .intro-doctor,
+    .schedule-doctor,
+    .detail-infor-doctor {
+        width: min(1180px, calc(100% - 40px));
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .intro-doctor {
         display: flex;
-        margin: 0 100px;
+        align-items: center;
+        min-height: 190px;
+        padding: 28px 36px;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
 
        .content-left {
-            width: 120px;
-            min-width: 120px;
-            height: 120px;
+            flex: 0 0 150px;
+            width: 150px;
+            height: 150px;
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
+            border: 4px solid #e8f4ff;
             border-radius: 50%;
-            margin: 10px 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .1);
 }
 
         .content-right {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            padding-left: 10px;
+            padding-left: 30px;
 
             .up {
-                padding-top: 15px;
-                font-size: 20px;
-                font-weight: 600;
+                color: #1677b8;
+                font-size: 25px;
+                font-weight: 700;
+                line-height: 1.35;
             }
 
             .down {
-                padding-top: 10px;
+                max-width: 720px;
+                margin-top: 12px;
+                color: #65717b;
+                font-size: 16px;
+                line-height: 1.7;
             }
         }
     }
 
     .schedule-doctor {
-        margin: 0 100px;
-        display: flex;
-        padding: 10px 0;
-        min-height: 200px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+        gap: 24px;
+        margin-top: 24px;
         
         .content-left {
-            width: 50%;
+            min-width: 0;
+            padding: 24px;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
         }
+
         .content-right {
-            width: 50%;
+            min-width: 0;
+            padding: 24px;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
         }
     }
 
     .detail-infor-doctor {
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        background-color: #f9f9f9;
-        padding: 10px 100px;
+        margin-top: 24px;
+        padding: 32px 40px;
+        border: 0;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        line-height: 1.75;
 
 
-        h1 {
-        font-size: 24px;
-        }
-        h2 {
-        font-size: 21px;
-        }
-        h3 {
-            font-size: 17px;
-        }
+        h1, h2, h3, h4 { color: #174a6b; }
+        h1 { font-size: 16px; }
+        h2 { font-size: 16px; }
+        h3 { font-size: 16px; }
 
         img {
-            width: 100%;
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 18px auto;
+            border-radius: 8px;
         }
     }
 
     .comment-doctor {
-        height: 50px;
+        min-height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .doctor-detail-container {
+        padding-top: 20px;
+
+        .intro-doctor,
+        .schedule-doctor,
+        .detail-infor-doctor {
+            width: calc(100% - 24px);
+        }
+
+        .intro-doctor {
+            align-items: flex-start;
+            padding: 22px;
+
+            .content-left {
+                flex-basis: 100px;
+                width: 100px;
+                height: 100px;
+            }
+
+            .content-right {
+                padding-left: 18px;
+                .up { font-size: 20px; }
+                .down { font-size: 14px; }
+            }
+        }
+
+        .schedule-doctor {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .detail-infor-doctor { padding: 22px; }
+    }
+}
+
+@media (max-width: 480px) {
+    .doctor-detail-container .intro-doctor {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .content-right { padding: 18px 0 0; }
     }
 }

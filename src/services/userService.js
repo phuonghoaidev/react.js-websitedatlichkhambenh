@@ -83,8 +83,16 @@ const getAllSpecialty = () => {
     return axios.get(`/api/get-specialty`)
 }
 
+const getAllClinic = () => {
+    return axios.get(`/api/get-clinic`)
+}
+
 const getAlDetailSpecialtyById = (data) => {
-    return axios.get(`/api/get-detail-specialty-bt-id?id=${data.id}&location=${data.location}`)
+    return axios.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`)
+}
+
+const getAlDetailClinicById = (data) => {
+    return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`)
 }
 
 const createNewClinic = (data) => {
@@ -100,5 +108,5 @@ export default {
     getExtraInforDoctorById, getProfileDoctorById,
     postPatientBookAppointment, postVerifyBookAppointment,
     createNewspecialty, getAllSpecialty, getAlDetailSpecialtyById,
-    createNewClinic
+    createNewClinic, getAllClinic, getAlDetailClinicById
 }

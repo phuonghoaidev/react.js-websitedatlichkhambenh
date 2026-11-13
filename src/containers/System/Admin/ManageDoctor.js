@@ -98,8 +98,11 @@ class ManageDoctor extends Component {
                 })
             }
             if (type === 'CLINIC') {
-                inputData.map(item => {
-                    result.push({ label: item.name || item.nameClinic, value: item.id })
+                inputData.map((item, index) => {
+                    let object = {};
+                    object.label = item.name;
+                    object.value = item.id;
+                    result.push(object)
                 })
             }
         }
@@ -208,7 +211,7 @@ class ManageDoctor extends Component {
                 selectedOption: '', contentHTML: '', contentMarkdown: '', description: '',
                 hasOldData: false, addressClinic: '', nameClinic: '', note: '',
                 selectedPayment: '', selectedPrice: '', selectedProvince: '',
-                selectedSpecialty: '', selectedClinic: ''
+                selectedSpecialty: '', selectedClinic: '',
             });
             return;
         }
